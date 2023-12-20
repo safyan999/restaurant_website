@@ -1,67 +1,70 @@
 <template>
-    
-    <div class="register">
-        <h1>Sign UP</h1>
-        <form>
+<div class="register">
+    <h1>Sign UP</h1>
+    <form>
 
-            <input type="text" placeholder="safyan" name="name"  v-model="name" >
-            <input type="text" placeholder="user@email.com" name="gmail" v-model="email">
-            <input type="text" placeholder="password" name="password" v-model="password">
-            <button  v-on:click="registerBtn" type="button">
-                SignUp
-            </button>
-        </form>
-    </div>
-    
+        <input type="text" placeholder="safyan" name="name" v-model="username">
+        <input type="text" placeholder="user@email.com" name="gmail" v-model="useremail">
+        <input type="text" placeholder="password" name="password" v-model="userpassword">
+        <button type="button" v-on:click="registerBtn">SignUP</button>
+    </form>
+</div>
 </template>
+
 <script>
-export default{
-    name:"signUp",
-
-
-    data(){
-        return{
-            name:'',
-            email:'',
-            password:''
+import axios from 'axios';
+export default {
+    name: "signUP",
+    data() {
+        return {
+            username: null,
+            useremail: null,
+            userpassword: null,
         }
 
     },
-    method:{
-        registerBtn(){
-           console.log("submit");
+    methods: {
+       async registerBtn() {
+            let result = await axios.post("http://localhost:3000/user", {
+                name: this.username,
+                email: this.useremail,
+                password: this.userpassword
+            });
+            console.log(result.status) 
+            if(result.status ===201) {
+                alert("submitted Form");  
+                localStorage.setItem("user-info",JSON.stringify(result.data))
+            }         
         }
     }
 }
 </script>
+
 <style>
-.register{
+.register {
     align-items: center;
     width: 50%;
     text-align: center;
     border: 1px solid black;
     margin-left: 20%;
     margin-top: 50px;
-    
+
 }
-.register input{
+
+.register input {
     display: block;
-    margin:20px;
+    margin: 20px;
     padding: 20px;
-    width:80%;
-  
-
-
-
+    width: 80%;
 
 }
-.register button{
+
+.register button {
     width: 40%;
-    padding:5px;
+    padding: 5px;
     margin-bottom: 10px;
     background-color: aquamarine;
     font-size: larger;
     border-radius: 20px;
 }
-
 </style>
