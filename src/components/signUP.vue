@@ -34,6 +34,7 @@ export default {
             if(result.status ===201) {
                 alert("submitted Form");  
                 localStorage.setItem("user-info",JSON.stringify(result.data))
+                this.$router.push({name:'MyHome'})
             }         
         }
     }

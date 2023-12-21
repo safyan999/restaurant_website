@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './routes';
 
-Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+
+// Create the Vue app instance and use BootstrapVue
+createApp(App).use(router).mount('#app');

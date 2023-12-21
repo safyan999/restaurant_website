@@ -1,23 +1,15 @@
 <template>
-<div id="app">
-    <signUP />
-    <LoginForm/>
-</div>
-</template>
-
-<script>
-import LoginForm from './components/loginForm.vue';
-import signUP from './components/signUP.vue';
-export default {
-    name: 'App',
-    components: {
-    signUP,
-    LoginForm
-}
-
-}
-</script>
-
-<style>
-
-</style>
+    <div>           
+      <router-link class="nav-link" to="/signUP">SignUP</router-link>
+      <br>
+      <router-link class="nav-link" to="/loginForm">Login</router-link>
+      <router-view></router-view>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'App'
+  }
+  </script>
+  
